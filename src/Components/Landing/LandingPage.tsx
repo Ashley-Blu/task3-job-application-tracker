@@ -1,9 +1,12 @@
 import React from "react";
-import logo from "../../assets/logo.png";
 import landing from "../../assets/landing-image.png"
 import "./Landing.css";
+import { useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="wrapper">
       <div className="navbar">
@@ -31,7 +34,11 @@ export const LandingPage = () => {
             you will not know which applications were a success and which were <br />
             not.
           </p>
-          <button type="submit" className="login">
+          <button type="submit" className="login"
+            onClick={() =>{
+              navigate("/SignupPage")
+            }}
+          >
             {" "}
             Get Started{" "}
           </button>
@@ -44,3 +51,5 @@ export const LandingPage = () => {
     </ div>
   );
 };
+
+export default LandingPage;
