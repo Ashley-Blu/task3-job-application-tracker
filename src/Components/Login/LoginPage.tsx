@@ -3,6 +3,7 @@ import "./Login.css";
 import image from "../../assets/signup.png";
 import { useNavigate } from "react-router-dom";
 import { getUsers, setActiveUser } from "../../utils/localStorage";
+import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -41,8 +42,8 @@ export const LoginPage = () => {
     <>
       <div className="signin-wrapper">
         <div className="sign-side">
-          <h1>Login</h1>
-          <p>Welcome back...</p>
+          <h1>Log  In</h1>
+          <p>Don't have a account? <Link to="/SignupPage"><span className="login-option">Create an accout</span></Link></p>
           <form>
             <label htmlFor="username">Username:</label>
             <input
@@ -64,12 +65,6 @@ export const LoginPage = () => {
           {error && (
             <>
               <p style={{ color: "red" }}>{error}</p>
-              <button
-                onClick={() => navigate("/SignupPage")}
-                style={{ marginTop: "10px" }}
-              >
-                Go to Signup
-              </button>
             </>
           )}
           <button onClick={handleLogin}>Login</button>

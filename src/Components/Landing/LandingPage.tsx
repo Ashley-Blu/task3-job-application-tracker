@@ -1,7 +1,7 @@
-import React from "react";
 import landing from "../../assets/landing-image.png";
 import "./Landing.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const LandingPage = () => {
   const navigate = useNavigate();
@@ -16,14 +16,20 @@ export const LandingPage = () => {
         </div>
 
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Cotact Us</li>
+          <Link to="#home" style={{textDecoration:"none", color:"black"}}>
+            <li>Home</li>
+          </Link>
+          <Link to="#about" style={{textDecoration:"none", color:"black"}}>
+            <li>About</li>
+          </Link>
+          <Link to="#contact" style={{textDecoration:"none", color:"black"}}>
+            <li>Cotact Us</li>
+          </Link>
         </ul>
       </div>
 
-      <div className="container">
-        <div className="left">
+      <div className="container" id="home">
+        <div className="left" id="about">
           <h1>
             Lets keep <br /> track of your job applications.
           </h1>

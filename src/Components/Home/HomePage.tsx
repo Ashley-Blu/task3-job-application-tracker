@@ -1,7 +1,12 @@
 import React from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { getJobs, saveJob } from "../../utils/localStorage";
+import { getJobs } from "../../utils/localStorage";
+import bin from "../../assets/bin.png";
+import edit from "../../assets/edit.png";
+import more from "../../assets/see-more.png";
+import plus from "../../assets/plus.png";
+import cancel from "../../assets/cancel.png";
 
 export const HomePage = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -151,19 +156,37 @@ export const HomePage = () => {
                 cursor: "pointer",
               }}
             >
-              Add Job Application
+              <img src={plus} width={20} height={20} />
             </button>
           ) : (
             <div
               style={{
                 marginTop: "18px",
-                background: "#f7f7f7",
+                background: "#f4e9e9",
                 padding: "24px",
                 borderRadius: "12px",
                 maxWidth: "600px",
               }}
             >
-              <h2>Add Job Application</h2>
+              <button
+                onClick={() => setShowAddForm(false)}
+                style={{
+                  padding: "7px 7px",
+                  borderRadius: "6px",
+                  border: "none",
+                  background: "#ef6960",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "right"
+                }}
+              >
+                <img src={cancel} width={20} height={20} style={{textAlign: "center"}}/>
+              </button>
+              <h2 style={{ paddingBottom: 5, textAlign: "center" }}>
+                Add Job Application
+              </h2>
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "8px" }}
               >
@@ -242,27 +265,13 @@ export const HomePage = () => {
                     padding: "10px 24px",
                     borderRadius: "6px",
                     border: "none",
-                    background: "#007bff",
+                    background: "#ef6960",
                     color: "white",
                     fontWeight: "bold",
                     cursor: "pointer",
                   }}
                 >
                   Save
-                </button>
-                <button
-                  onClick={() => setShowAddForm(false)}
-                  style={{
-                    padding: "10px 24px",
-                    borderRadius: "6px",
-                    border: "none",
-                    background: "#dc3545",
-                    color: "white",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                  }}
-                >
-                  Cancel
                 </button>
               </div>
               {error && <p style={{ color: "red" }}>{error}</p>}
@@ -275,7 +284,7 @@ export const HomePage = () => {
               key={job.id}
               style={{
                 marginBottom: "30px",
-                background: "#f7f7f7",
+                background: "#f4e9e9ff",
                 padding: "24px",
                 borderRadius: "14px",
                 boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
@@ -301,7 +310,7 @@ export const HomePage = () => {
                     id="edit-company"
                     name="company"
                     type="text"
-                    placeholder="e.g. Tech Solutions Inc."
+                    placeholder="Enter the company name..."
                     value={editData.company}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -311,7 +320,7 @@ export const HomePage = () => {
                     id="edit-status"
                     name="status"
                     type="text"
-                    placeholder="e.g. Interview Scheduled"
+                    placeholder="Add status of your application..."
                     value={editData.status}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -321,7 +330,7 @@ export const HomePage = () => {
                     id="edit-address"
                     name="address"
                     type="text"
-                    placeholder="e.g. 123 Main St, Cityville"
+                    placeholder="Add the address of the company..."
                     value={editData.address}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -331,7 +340,7 @@ export const HomePage = () => {
                     id="edit-contact"
                     name="contact"
                     type="text"
-                    placeholder="e.g. hr@techsolutions.com"
+                    placeholder="Add an email or contact details..."
                     value={editData.contact}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -340,7 +349,7 @@ export const HomePage = () => {
                   <textarea
                     id="edit-duties"
                     name="duties"
-                    placeholder="e.g. Develop and maintain web applications, collaborate with designers and backend engineers."
+                    placeholder="Add the role you applied for..."
                     value={editData.duties}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -349,7 +358,7 @@ export const HomePage = () => {
                   <textarea
                     id="edit-requirements"
                     name="requirements"
-                    placeholder="e.g. React, TypeScript, CSS, 2+ years experience."
+                    placeholder="Add the skills required..."
                     value={editData.requirements}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -358,7 +367,7 @@ export const HomePage = () => {
                   <textarea
                     id="edit-notes"
                     name="notes"
-                    placeholder="e.g. Prepare portfolio for interview."
+                    placeholder="Add a note: e.g. Prepare portfolio for interview."
                     value={editData.notes}
                     onChange={handleEditInputChange}
                     style={{ marginBottom: "8px", width: "100%" }}
@@ -366,11 +375,11 @@ export const HomePage = () => {
                   <div style={{ display: "flex", gap: "10px" }}>
                     <button
                       onClick={() => handleUpdateJob(job.id)}
-                      style={{ marginRight: "8px" }}
+                      style={{ marginRight: "8px", padding:10, background:"#ef6960", border: "none", borderRadius: 6 , color:"white", fontWeight: "bold"}}
                     >
                       Save
                     </button>
-                    <button onClick={() => setEditingId(null)}>Cancel</button>
+                    <button onClick={() => setEditingId(null)} style={{padding:10, background:"#ef6960", border:"none", borderRadius:6, color:"white", fontWeight: "bold"}}>Cancel</button>
                   </div>
                 </div>
               ) : (
@@ -395,14 +404,14 @@ export const HomePage = () => {
                         padding: "10px 20px",
                         borderRadius: "6px",
                         border: "none",
-                        background: "#007bff",
                         color: "white",
+                        background: "none",
                         cursor: "pointer",
                         fontWeight: "bold",
                         boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
                       }}
                     >
-                      View Details
+                      <img src={more} width={20} height={40} />
                     </button>
                     {showModal && modalJob && (
                       <div
@@ -461,7 +470,7 @@ export const HomePage = () => {
                               padding: "10px 24px",
                               borderRadius: "6px",
                               border: "none",
-                              background: "#007bff",
+                              background: "#ef6960",
                               color: "white",
                               fontWeight: "bold",
                               cursor: "pointer",
@@ -478,14 +487,14 @@ export const HomePage = () => {
                         padding: "10px 20px",
                         borderRadius: "6px",
                         border: "none",
-                        background: "#ffc107",
                         color: "black",
+                        background: "none",
                         cursor: "pointer",
                         fontWeight: "bold",
                         boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
                       }}
                     >
-                      Edit
+                      <img src={edit} width={20} height={20} />
                     </button>
                     <button
                       onClick={() => handleDeleteJob(job.id)}
@@ -493,14 +502,19 @@ export const HomePage = () => {
                         padding: "10px 20px",
                         borderRadius: "6px",
                         border: "none",
-                        background: "#ef6960",
+                        background: "none",
                         color: "white",
                         cursor: "pointer",
                         fontWeight: "bold",
                         boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
                       }}
                     >
-                      Delete
+                      <img
+                        src={bin}
+                        width={20}
+                        height={20}
+                        style={{ marginTop: 10 }}
+                      />
                     </button>
                   </div>
                 </>

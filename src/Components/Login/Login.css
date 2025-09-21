@@ -55,3 +55,10 @@
     width: 500px;
     height: 600px;
 }
+
+.login-option{
+    color: #ef6960;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+}
