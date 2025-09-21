@@ -21,7 +21,6 @@ A simple React-based application to help you track your job applications. You ca
 - **React Router** (Page navigation)  
 - **Hooks (useState, useEffect)** for state management  
 - **CSS Modules / Custom Styles** for styling  
-- *(Optional)* React Icons / Lucide for icons  
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
