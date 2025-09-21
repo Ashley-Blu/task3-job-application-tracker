@@ -44,7 +44,7 @@ npm install
 3. **Start the development server**
 npm run dev
 
-4. Open in your browser → http://localhost:  (Using the provided url)
+4. Open in your browser →  http://localhost:5173/  (Using the provided url)
 
 ## Project Outcome
 
