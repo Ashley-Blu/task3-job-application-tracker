@@ -1,72 +1,201 @@
-.signup-wrapper{
-    background: white;
-    margin: 40px;
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 350px;
+.signup-wrapper {
+  background: white;
+  margin: 40px;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 350px;
 }
 
-.left-side{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .signup-wrapper {
+    gap: 200px;
+    margin: 30px;
+  }
 }
-
-.left-side form{
-    display: flex;
+@media (max-width: 1024px) {
+  .signup-wrapper {
+    gap: 120px;
+    margin: 20px;
     flex-direction: column;
+    align-items: stretch;
+  }
+}
+@media (max-width: 768px) {
+  .signup-wrapper {
+    gap: 40px;
+    margin: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+@media (max-width: 480px) {
+  .signup-wrapper {
     gap: 10px;
-    margin-bottom: 30px;
+    margin: 4px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+}
+@media (max-width: 320px) {
+  .signup-wrapper {
+    gap: 2px;
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+}
+.left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.left-side form label{
-    margin-bottom: 5px;
-    font-weight: 500;
+/* Responsive adjustments for left-side and form */
+@media (max-width: 1200px) {
+  .left-side form input {
+    width: 320px;
+  }
+  .right-side .image {
+    width: 350px;
+    height: 400px;
+  }
 }
-
-.left-side form input{
-    border-radius: 7px;
-    border: 2px solid #ef6960;
-    width: 400px;
+@media (max-width: 1024px) {
+  .left-side {
+    align-items: stretch;
+    gap: 20px;
+  }
+  .left-side form input {
+    width: 240px;
+  }
+  .right-side .image {
+    width: 220px;
+    height: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .signup-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .left-side {
+    align-items: stretch;
+    gap: 10px;
+  }
+  .left-side form input {
+    width: 100%;
+    min-width: 0;
+  }
+  .right-side .image {
+    width: 120px;
+    height: 140px;
+  }
+}
+@media (max-width: 480px) {
+  .signup-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin: 2px;
+    padding: 0;
+  }
+  .left-side {
+    align-items: stretch;
+    gap: 4px;
+  }
+  .left-side form input {
+    width: 100%;
+    min-width: 0;
+    font-size: 14px;
+    height: 30px;
+  }
+  .right-side .image {
+    width: 60px;
+    height: 70px;
+  }
+}
+@media (max-width: 320px) {
+  .signup-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+  }
+  .left-side {
+    align-items: stretch;
+    gap: 2px;
+  }
+  .left-side form input {
+    width: 100%;
+    min-width: 0;
+    font-size: 12px;
+    height: 24px;
+  }
+  .right-side .image {
+    width: 30px;
     height: 35px;
-    padding: 0 10px;
-    margin-bottom: 15px;
+  }
 }
 
-.left-side form input::placeholder{
-    opacity: 50%;
-    padding-left: 10px;
+.left-side form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.left-side form label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.left-side form input {
+  border-radius: 7px;
+  border: 2px solid #ef6960;
+  width: 400px;
+  height: 35px;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.left-side form input::placeholder {
+  opacity: 50%;
+  padding-left: 10px;
 }
 
 .left-side p {
-    text-align: left;
-    font-size: 14px;
-    margin-top: -15px;
-    margin-bottom: 5px;
+  text-align: left;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 5px;
 }
 
 .left-side .login-option {
-    color: #ef6960;
-    cursor: pointer;
-    font-weight: 600;
-    text-decoration: underline;
+  color: #ef6960;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .left-side button {
-    width: 190px;
-    height: 40px;
-    border-radius: 30px;
-    background: #ef6960;
-    font-weight: 600;
-    border: none;
-    align-self: center;
-    cursor: pointer;
+  width: 190px;
+  height: 40px;
+  border-radius: 30px;
+  background: #ef6960;
+  font-weight: 600;
+  border: none;
+  align-self: center;
+  cursor: pointer;
 }
 
-.right-side .image{
-    width: 500px;
-    height: 600px;
+.right-side .image {
+  width: 500px;
+  height: 600px;
 }
-

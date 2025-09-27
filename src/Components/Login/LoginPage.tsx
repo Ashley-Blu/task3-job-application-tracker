@@ -4,6 +4,7 @@ import image from "../../assets/signup.png";
 import { useNavigate } from "react-router-dom";
 import { getUsers, setActiveUser } from "../../utils/localStorage";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ export const LoginPage = () => {
     password: "",
   });
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,30 +23,53 @@ export const LoginPage = () => {
 
   const handleLogin = () => {
     setError("");
-    if (!formData.username || !formData.password) {
-      setError("Please fill in all fields");
-      return;
-    }
-    const users = getUsers();
-    console.log("Users in localStorage:", users);
-    const user = users.find(
-      (u: any) =>
-        u.username === formData.username && u.password === formData.password
-    );
-    if (!user) {
-      setError("Invalid username or password");
-      return;
-    }
-    setActiveUser(user);
-    navigate("/HomePage");
+    setSuccess(false);
+    setLoading(true);
+    setTimeout(() => {
+      if (!formData.username || !formData.password) {
+        setError("Please fill in all fields");
+        setLoading(false);
+        return;
+      }
+      const users = getUsers();
+      const user = users.find(
+        (u: any) =>
+          u.username === formData.username && u.password === formData.password
+      );
+      if (!user) {
+        setError("Invalid username or password");
+        setLoading(false);
+        return;
+      }
+      setActiveUser(user);
+      setLoading(false);
+      toast.success("Login successful!");
+      setTimeout(() => navigate("/HomePage"), 1200);
+    }, 1000);
   };
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            border: "1px solid #333",
+            padding: "12px",
+            color: "#fff",
+            background: "#ef6960",
+          },
+        }}
+      />
       <div className="signin-wrapper">
         <div className="sign-side">
-          <h1>Log  In</h1>
-          <p>Don't have a account? <Link to="/SignupPage"><span className="login-option">Create an accout</span></Link></p>
+          <h1>Log In</h1>
+          <p>
+            Don't have a account?{" "}
+            <Link to="/SignupPage">
+              <span className="login-option">Create an accout</span>
+            </Link>
+          </p>
           <form>
             <label htmlFor="username">Username:</label>
             <input
@@ -62,12 +88,36 @@ export const LoginPage = () => {
               onChange={handleInputChange}
             />
           </form>
+          {loading && (
+            <div
+              style={{
+                color: "#ef6960",
+                fontWeight: "bold",
+                marginBottom: "10px",
+              }}
+            >
+              Logging in...
+            </div>
+          )}
+          {success && (
+            <div
+              style={{
+                color: "green",
+                fontWeight: "bold",
+                marginBottom: "10px",
+              }}
+            >
+              Login successful!
+            </div>
+          )}
           {error && (
             <>
               <p style={{ color: "red" }}>{error}</p>
             </>
           )}
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleLogin} style={{ color: "white" }}>
+            Sign In
+          </button>
         </div>
         <div className="image-side">
           <img src={image} alt="" className="image" />

@@ -33,8 +33,8 @@ export const LandingPage = () => {
           <h1>
             Lets keep <br /> track of your job applications.
           </h1>
-          <p>
-            Tracker is a web application that is much of a help in terms of{" "}
+          <p style={{color: "#494949ff"}}>
+            web application that is much of a help in terms of{" "}
             <br />
             keeping track of jobs you have applied for. This is helpful because{" "}
             <br />
@@ -48,6 +48,7 @@ export const LandingPage = () => {
             onClick={() => {
               navigate("/SignupPage");
             }}
+            style={{color:"white"}}
           >
             {" "}
             Get Started{" "}
