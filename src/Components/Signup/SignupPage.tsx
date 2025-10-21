@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Signup.css";
 import sign from "../../assets/signup.png";
 import { useNavigate, Link } from "react-router-dom";
@@ -14,36 +14,32 @@ export const SignupPage = () => {
   });
   const [loading, setLoading] = React.useState(false);
 
+  const [errors, setErrors] = useState<{ [k: string]: string }>({});
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newErrors: { [k: string]: string } = {};
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    if (getUserByEmail(formData.email))
+      newErrors.email = "User with the same email already exists";
+    if (!formData.username.trim()) newErrors.username = "Username is required";
+    if (!formData.password || formData.password.length < 6)
+      newErrors.password = "Password minimum length should be 6 characters";
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
   };
 
   const handleSignup = () => {
     setLoading(true);
 
     setTimeout(() => {
-      if (!formData.email || !formData.username || !formData.password) {
-        toast.error("⚠️ Please fill in all fields");
-        setLoading(false);
-        return;
-      }
-
-      if (formData.password.length < 6) {
-        toast.error("🔑 Password must be at least 6 characters");
-        setLoading(false);
-        return;
-      }
-
-      if (getUserByEmail(formData.email)) {
-        toast.error("📧 User with this email already exists");
-        setLoading(false);
-        return;
-      }
-
-      saveUser(formData);
-      toast.success("🎉 Signup successful! Redirecting...");
-
       setLoading(false);
       setTimeout(() => navigate("/LoginPage"), 1500);
     }, 1000);
